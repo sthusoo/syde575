@@ -60,8 +60,6 @@ cameraman_nn_psnr = PSNR(cameraman_image, cameraman_nn);
 lena_bilinear_psnr = PSNR(lena_grayscale, lena_bilinear);
 cameraman_bilinear_psnr = PSNR(cameraman_image, cameraman_bilinear);
 
-% 3. Bilinear Interpolation
+% 3. Bicubic Interpolation
 lena_bicubic_psnr = PSNR(lena_grayscale, lena_bicubic);
 cameraman_bicubic_psnr = PSNR(cameraman_image, cameraman_bicubic);
-
-

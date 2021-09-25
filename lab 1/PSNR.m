@@ -17,7 +17,7 @@ function PSNR_out = PSNR(f, g)
     % Calculate Mean Squared Error 
     MSE = (1/(m*n)) * sum(squared_diff(:));
     
-    % Calculate Peak Signal to Noise Ratio 
+    % Calculate Peak Signal to Noise Ratio
     PSNR_out = 10 * log10(MAX_f^2 / MSE);
     
 end

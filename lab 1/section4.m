@@ -9,7 +9,7 @@ title('Tire Image');
 subplot(1,2,2), imhist(tire_image);
 title('Tire Image Histogram')
 
-% Apply image nagtive transform on the image. Plot image andn histogram
+% Apply image nagtive transform on the image. Plot image and histogram
 neg_tire = 255 - tire_image; % Using 255 as max because 8-bit data
 
 figure;
@@ -21,6 +21,7 @@ title('Negative Transformation Tire Histogram');
 % Apply 2 power-law transformations
 % Normalize tire image and convert to double so it isn't read as int
 tire_image_norm = double(tire_image)/255;
+
 % γ = 0.5
 gamma_1 = 0.5;
 tire_power_1 = tire_image_norm.^gamma_1;
