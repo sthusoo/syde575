@@ -1,31 +1,27 @@
 %% Section 4 - Noise Reduction in the Spatial Domain %%
 
-% Load the Lena image and convert it to a grayscale image using the
-% rgb2gray function
+% Load the Lena image and convert it to a grayscale image using the rgb2gray function
 lena_image = imread("lena.tiff");
 lena_grayscale = rgb2gray(lena_image);
 
 % To get the intensity of the image within the range of 0 to 1, use the
-% double function on the image and then divide it by 255 (alternatively use
-% im2double function
+% double function on the image and then divide it by 255 (alternatively use im2double function)
 lena_normalized = im2double(lena_grayscale);
 
-% Contaminate the Lena image with zero-mean Gaussian noise with a variance
-% of 0.002
+% Contaminate the Lena image with zero-mean Gaussian noise with a variance of 0.002
 lena_contaminated = imnoise(lena_normalized, 'gaussian', 0, 0.002);
 
 % Plot the noisy image and the corresponding histogram and PSNR between the
 % noisy image and the original noise-free image
-% figure;
-% subplot(1,2,1), imshow(lena_contaminated);
-% title('Gaussian Noise Lena');
-% subplot(1,2,2), imhist(lena_contaminated);
-% title('Histogram of Gaussian Noise Lena');
+figure;
+subplot(1,2,1), imshow(lena_contaminated);
+title('Gaussian Noise Lena');
+subplot(1,2,2), imhist(lena_contaminated);
+title('Histogram of Gaussian Noise Lena');
 
 lena_contaminated_psnr = PSNR(lena_normalized, lena_contaminated);
 
-% Create a 3x3 averaging filter kernel using the fspecial function. Plot
-% this filter using imagesc and colormap (gray)
+% Create a 3x3 averaging filter kernel using the fspecial function. Plot this filter using imagesc and colormap (gray)
 averaging_filter = fspecial('average');
 
 figure;
@@ -88,8 +84,7 @@ lena_noise = imnoise(lena_normalized, 'salt & pepper', 0.05);
 lena_filter_4 = imfilter(lena_noise, averaging_filter_2);
 lena_filter_5 = imfilter(lena_noise, averaging_filter_3);
 
-% Plot the noisy image, the denoised images using each method, and the corresponding histograms. 
-% Noisy image
+% Plot the noisy image, the denoised images using each method, and the corresponding histograms.
 figure;
 subplot(2,1,1), imshow(lena_noise);
 title('Noisy Image');
@@ -108,9 +103,7 @@ title('7x7 Gaussian Filter on Salt & Pepper Noise');
 subplot(2,2,4), imhist(lena_filter_5);
 title('Histogram of 7x7 Gaussian Filter on Salt & Pepper Noise');
 
-% Also, compute the PSNR between the denoised images and the original
-% noise-free image
-
+% Also, compute the PSNR between the denoised images and the original noise-free image
 lena_filter_psnr_4 = PSNR(lena_normalized, lena_filter_4);
 lena_filter_psnr_5 = PSNR(lena_normalized, lena_filter_5);
 
