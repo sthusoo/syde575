@@ -16,7 +16,7 @@ subtracted_image = cameraman_normalized - cameraman_filered;
 figure;
 subplot(1,2,1), imshow(cameraman_filered);
 title('7x7 Averaging Filtered Cameraman');
-subplot(1,2,1), imshow(subtracted_image);
+subplot(1,2,2), imshow(subtracted_image);
 title('Subtracted Image');
 
 % Add the subtracted image to the original image. Plot the resulting
