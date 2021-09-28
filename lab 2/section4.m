@@ -19,7 +19,7 @@ title('Gaussian Noise Lena');
 subplot(1,2,2), imhist(lena_contaminated);
 title('Histogram of Gaussian Noise Lena');
 
-lena_contaminated_psnr = PSNR(lena_normalized, lena_contaminated);
+lena_contaminated_psnr = 10*log10(1/mean2((lena_normalized-lena_contaminated).^2));
 
 % Create a 3x3 averaging filter kernel using the fspecial function. Plot this filter using imagesc and colormap (gray)
 averaging_filter = fspecial('average');
@@ -40,7 +40,7 @@ title('3x3 Averaging Filtered Lena');
 subplot(1,2,2), imhist(lena_filter);
 title('Histogram of 3x3 Averaging Filtered Lena');
 
-lena_filter_psnr = PSNR(lena_normalized, lena_filter);
+lena_filter_psnr = 10*log10(1/mean2((lena_normalized-lena_filter).^2));
 
 % Now create a 7x7 averaging filter kernel and apply it to the noisy image.  
 averaging_filter_2 = fspecial('average', 7);
@@ -54,7 +54,7 @@ subplot(1,2,2), imhist(lena_filter_2);
 title('Histogram of 7x7 Averaging Filtered Lena');
 
 % Also, compute the PSNR between the denoised image and the original noise-free image.
-lena_filter_psnr_2 = PSNR(lena_normalized, lena_filter_2);
+lena_filter_psnr_2 = 10*log10(1/mean2((lena_normalized-lena_filter_2).^2));
 
 % Create a 7x7 Gaussian filter kernel with a standard deviation of 1. Plot the filter.
 averaging_filter_3 = fspecial('gaussian', 7, 1);
@@ -75,7 +75,7 @@ title('Histogram of 7x7 Gaussian Filtered Lena');
 
 % Compute the PSNR between the denoised imageand the original noise-free
 % image
-lena_filter_psnr_3 = PSNR(lena_normalized, lena_filter_3);
+lena_filter_psnr_3 = 10*log10(1/mean2((lena_normalized-lena_filter_3).^2));
 
 % Create a new noisy image by adding salt and pepper noise (density 0.05) to the image.  
 lena_noise = imnoise(lena_normalized, 'salt & pepper', 0.05);
@@ -104,8 +104,8 @@ subplot(2,2,4), imhist(lena_filter_5);
 title('Histogram of 7x7 Gaussian Filter on Salt & Pepper Noise');
 
 % Also, compute the PSNR between the denoised images and the original noise-free image
-lena_filter_psnr_4 = PSNR(lena_normalized, lena_filter_4);
-lena_filter_psnr_5 = PSNR(lena_normalized, lena_filter_5);
+lena_filter_psnr_4 = 10*log10(1/mean2((lena_normalized-lena_filter_4).^2));
+lena_filter_psnr_5 = 10*log10(1/mean2((lena_normalized-lena_filter_5).^2));
 
 % Apply the median filter on the noisy image. The medfilt2 function will come in handy for this.
 lena_filter_6 = medfilt2(lena_normalized);
@@ -119,4 +119,4 @@ title('Histogram of Median Filtered Lena Image');
 
 % Also, compute the PSNR between the denoisedimage and the original
 % noise-free image
-lena_filter_psnr_6 = PSNR(lena_normalized, lena_filter_6);
+lena_filter_psnr_6 = 10*log10(1/mean2((lena_normalized-lena_filter_6).^2));
