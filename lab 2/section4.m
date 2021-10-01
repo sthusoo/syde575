@@ -14,6 +14,13 @@ title('Normalized Lena');
 subplot(1,2,2), imhist(lena_normalized);
 title('Histogram of Normalized Lena');
 
+% Plot the grayscaled and normalized Lena image with its histogram
+figure;
+subplot(1,2,1), imshow(lena_normalized);
+title('Grayscaled + Normalized Lena');
+subplot(1,2,2), imhist(lena_normalized);
+title('Histogram of Grayscaled + Normalized Lena');
+
 % Contaminate the Lena image with zero-mean Gaussian noise with a variance of 0.002
 lena_contaminated = imnoise(lena_normalized, 'gaussian', 0, 0.002);
 
@@ -111,6 +118,7 @@ subplot(2,2,4), imhist(lena_filter_5);
 title('Histogram of 7x7 Gaussian Filter on Salt & Pepper Noise');
 
 % Also, compute the PSNR between the denoised images and the original noise-free image
+lena_filter_psnr_sp = 10*log10(1/mean2((lena_normalized-lena_noise).^2));
 lena_filter_psnr_4 = 10*log10(1/mean2((lena_normalized-lena_filter_4).^2));
 lena_filter_psnr_5 = 10*log10(1/mean2((lena_normalized-lena_filter_5).^2));
 
