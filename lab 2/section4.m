@@ -111,7 +111,6 @@ subplot(2,2,4), imhist(lena_filter_5);
 title('Histogram of 7x7 Gaussian Filter on Salt & Pepper Noise');
 
 % Also, compute the PSNR between the denoised images and the original noise-free image
-lena_filter_psnr_sp = 10*log10(1/mean2((lena_normalized-lena_noise).^2));
 lena_filter_psnr_4 = 10*log10(1/mean2((lena_normalized-lena_filter_4).^2));
 lena_filter_psnr_5 = 10*log10(1/mean2((lena_normalized-lena_filter_5).^2));
 
