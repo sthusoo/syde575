@@ -14,13 +14,6 @@ title('Normalized Lena');
 subplot(1,2,2), imhist(lena_normalized);
 title('Histogram of Normalized Lena');
 
-% Plot the grayscaled and normalized Lena image with its histogram
-figure;
-subplot(1,2,1), imshow(lena_normalized);
-title('Grayscaled + Normalized Lena');
-subplot(1,2,2), imhist(lena_normalized);
-title('Histogram of Grayscaled + Normalized Lena');
-
 % Contaminate the Lena image with zero-mean Gaussian noise with a variance of 0.002
 lena_contaminated = imnoise(lena_normalized, 'gaussian', 0, 0.002);
 
