@@ -4,9 +4,11 @@ lena_image = imread("lena.tiff");
 cameraman_image = imread("cameraman.tif");
 
 f = [0.3*ones(200,100) 0.7*ones(200,100)];
+figure;
+imshow(f);
 
 % Noise models
-f1 = imnoise(f, 'gaussian', 0, 0.1);
+f1 = imnoise(f, 'gaussian', 0, 0.01);
 f2 = imnoise(f, 'salt & pepper', 0.05);
 f3 = imnoise(f, 'speckle', 0.04);
 

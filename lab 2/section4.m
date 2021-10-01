@@ -7,6 +7,12 @@ lena_grayscale = rgb2gray(lena_image);
 % To get the intensity of the image within the range of 0 to 1, use the
 % double function on the image and then divide it by 255 (alternatively use im2double function)
 lena_normalized = im2double(lena_grayscale);
+ 
+figure;
+subplot(1,2,1), imshow(lena_normalized);
+title('Normalized Lena');
+subplot(1,2,2), imhist(lena_normalized);
+title('Histogram of Normalized Lena');
 
 % Contaminate the Lena image with zero-mean Gaussian noise with a variance of 0.002
 lena_contaminated = imnoise(lena_normalized, 'gaussian', 0, 0.002);
@@ -55,7 +61,7 @@ title('Histogram of 7x7 Averaging Filtered Lena');
 
 % Also, compute the PSNR between the denoised image and the original noise-free image.
 lena_filter_psnr_2 = 10*log10(1/mean2((lena_normalized-lena_filter_2).^2));
-
+% 
 % Create a 7x7 Gaussian filter kernel with a standard deviation of 1. Plot the filter.
 averaging_filter_3 = fspecial('gaussian', 7, 1);
 
@@ -76,9 +82,10 @@ title('Histogram of 7x7 Gaussian Filtered Lena');
 % Compute the PSNR between the denoised imageand the original noise-free
 % image
 lena_filter_psnr_3 = 10*log10(1/mean2((lena_normalized-lena_filter_3).^2));
-
+% 
 % Create a new noisy image by adding salt and pepper noise (density 0.05) to the image.  
 lena_noise = imnoise(lena_normalized, 'salt & pepper', 0.05);
+lena_salt_pepper_psnr = 10*log10(1/mean2((lena_normalized-lena_noise).^2)); % PSNR Value for reference
 
 % Apply the 7x7 averaging filter and the Gaussian filter to the noisy image separately.  
 lena_filter_4 = imfilter(lena_noise, averaging_filter_2);
