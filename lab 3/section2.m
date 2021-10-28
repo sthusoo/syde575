@@ -32,8 +32,8 @@ lena_amplitude = abs(fftshift(fft2(lena_grayscale)));
 lena_phase = fftshift(fft2(lena_grayscale)) ./ lena_amplitude;
 
 % Perform inverse Fourier Transform on Amplitude and Phase
-lena_amplitude_inv = log(ifft2(lena_amplitude));
-lena_phase_inv = log(ifft2(lena_phase));
+lena_amplitude_inv = log(ifft2(ifftshift(lena_amplitude)));
+lena_phase_inv = log(ifft2(ifftshift(lena_phase)));
 
 % Plot of Original Image
 figure;
