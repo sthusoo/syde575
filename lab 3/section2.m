@@ -47,5 +47,3 @@ title('Lena Image Reconstructed with Amplitude');
 % Plot of Image Reconstructed with Phase
 subplot(1,3,3), imshow(lena_phase_inv, []);
 title('Lena Image Reconstructed with Phase');
-
-
