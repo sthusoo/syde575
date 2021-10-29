@@ -1,12 +1,12 @@
 noise = imread('frequnoisy.tif');
 
-% convert to double
-noise = im2double(noise);
-
 % Plot image
 figure;
 imshow(noise);
 title('Frequnoisy image');
+
+% convert to double
+noise = im2double(noise);
 
 % Fourier Transform
 fourier_noise = fftshift(fft2(noise));
