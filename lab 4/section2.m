@@ -12,7 +12,8 @@ h_freq = fft2(h);
 f_blur = real(ifft2(h_freq.*fft2(f)));
 
 PSNR_blur = 10*log10(1/mean2((f-f_blur).^2));
-inverse_f = real(ifft2( fft2(f_blur) ./ h_freq));
+inverse_f = real( ifft2( fft2(f_blur) ./ h_freq));
+PSNR_inverse_f = 10*log10(1/mean2((f-inverse_f).^2));
 
 figure;
 subplot(1,2,1), imshow(f_blur);
@@ -23,8 +24,7 @@ title('Inverse Filtered Cameraman Image');
 % add zero-mean Gaussian noise with a variance of 0.002 to the blurred
 % image
 f_noise = imnoise(f_blur, 'gaussian', 0, 0.002);
-inverse_gaussian_f = real(ifft2( fft2(f_noise) ./ h_freq));
-
+inverse_gaussian_f = real( ifft2 (fft2(f_noise) ./ h_freq));
 figure;
 subplot(1,3,1), imshow(f);
 title('Original Cameraman Image');
@@ -33,13 +33,13 @@ title('Noisy Cameraman Image');
 subplot(1,3,3), imshow(inverse_gaussian_f);
 title('Restored Cameraman Image');
 
-PSNR_gaussian = 10*log10(1/mean2((f-inverse_gaussian_f).^2));
+PSNR_gaussian = 10*log10(1/mean2( (f-inverse_gaussian_f).^2));
 
 % Apply Wiener filtering on the noisy blurred image
+var_noise = 0.002;
 var_f = var(f_noise(:));
-snr_approx = 0.002 / var_f;
-PSF = h;
-wnr = deconvwnr(f_noise, PSF);
+nsr_approx = var_noise / var_f;
+wnr = deconvwnr(f_noise, h_d, nsr_approx);
 
 figure;
 subplot(1,2,1), imshow(f);
@@ -48,4 +48,3 @@ subplot(1,2,2), imshow(wnr)
 title('Restored Image - Wiener filter')
 
 PSNR_wiener = 10*log10(1/mean2((f-wnr).^2));
-
