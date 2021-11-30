@@ -7,7 +7,7 @@ subplot(1,3,1), imshow(peppers_ycbcr(:,:,1));
 title('Channel Y');
 subplot(1,3,2), imshow(peppers_ycbcr(:,:,2));
 title('Channel Cb');
-subplot(1,3,3), imshow(peppers_ycbcr(:,:,2));
+subplot(1,3,3), imshow(peppers_ycbcr(:,:,3));
 title('Channel Cr');
 
 % Now, reduce the resolution of the chroma channels by a factor of 2 in both 
