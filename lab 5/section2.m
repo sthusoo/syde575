@@ -1,6 +1,10 @@
-% convert the image from the RGB colorspace into the YCbCr colorspace using the rgb2ycbcr function
+% convert the image from the RGB colorspace into the YCbCr colorspace 
+% using the rgb2ycbcr function
 peppers_rgb = imread('peppers.png');
 peppers_ycbcr = rgb2ycbcr(peppers_rgb);
+
+figure;
+imshow(peppers_rgb);
 
 figure;
 subplot(1,3,1), imshow(peppers_ycbcr(:,:,1));

@@ -24,7 +24,7 @@ cluster_idx = kmeans(ab, K, 'start', mu);
 
 % Label each pixel according to k-means
 pixel_labels = reshape(cluster_idx, m, n);
-h = figure, imshow(pixel_labels, [])
+h = figure, imshow(pixel_labels, []);
 title('Image labeled by cluster index');
 colormap('jet')
 
